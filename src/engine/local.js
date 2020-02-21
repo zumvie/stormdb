@@ -39,7 +39,7 @@ module.exports = class LocalEngine {
       return new Promise(
         function(resolve, reject) {
           fs.writeFile(this.path, this.serialize(data), function(error) {
-            if (error) return reject();
+            if (error) return reject(error);
             else resolve();
           });
         }.bind(this)
