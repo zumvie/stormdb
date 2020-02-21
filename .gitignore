@@ -3,3 +3,4 @@ dist/
 db.stormdb
 test.js
 test.html
+.nyc_output/

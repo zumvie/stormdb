@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  - "9.11"
   - "10.15"
   - "11.15"
   - "12.3"
@@ -9,3 +8,7 @@ cache:
     - node_modules
 script:
   - npm test
+  - npm coverage
+  - npm report-coverage
+after_success:
+  coveralls < ./coverage/lcov.info
