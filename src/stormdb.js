@@ -1,5 +1,5 @@
 class StormDB {
-  constructor(engine, options = {}) {
+  constructor(engine) {
     this.engine = engine;
 
     this.state = this.engine.init();
