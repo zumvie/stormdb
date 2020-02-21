@@ -3,6 +3,12 @@
 
   <p>🌩️ StormDB is a tiny, lightweight, 0 dependency, easy-to-use JSON-based database that allows users to quickly and easily achieve data persistence by provided an engine to store and access JSON data, for NodeJS the browser or Electron.</p>
 
+  <a href="https://travis-ci.org/TomPrograms/stormdb">
+    <img src="https://travis-ci.org/TomPrograms/stormdb.svg?branch=master">
+  </a>
+  <a href="https://coveralls.io/github/TomPrograms/stormdb">
+    <img src="https://coveralls.io/repos/github/TomPrograms/stormdb/badge.svg?branch=master&service=github">
+  </a>
   <a href="https://npmjs.com/package/stormdb">
     <img src="https://img.shields.io/npm/v/stormdb?color=brightgreen">
   </a>
