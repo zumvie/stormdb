@@ -82,7 +82,7 @@ describe("engines", function() {
         return db.save();
       }
 
-      assert.rejects(saveDB, Error);
+      assert.rejects(saveDB);
     })
   });
 });
