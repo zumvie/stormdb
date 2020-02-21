@@ -41,8 +41,9 @@ module.exports = class LocalEngine extends Base {
     if (this.async) {
       return new Promise(
         function(resolve, reject) {
-          fs.writeFile(this.path, this.serialize(data), function() {
-            resolve();
+          fs.writeFile(this.path, this.serialize(data), function(error) {
+            if (error) return reject();
+            else resolve();
           });
         }.bind(this)
       );
