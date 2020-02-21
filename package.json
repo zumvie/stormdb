@@ -6,7 +6,10 @@
   "scripts": {
     "build": "webpack --config .webpack.config.js",
     "prepublishOnly": "npm run build",
-    "format": "prettier --write {**,**/**}/*.{js,md}"
+    "format": "prettier --write {**,**/**}/*.{js,md}",
+    "test": "mocha ./tests --recursive --exit",
+    "coverage": "nyc npm run test",
+    "report-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": "TomPrograms/stormdb",
   "files": [
@@ -20,6 +23,9 @@
   "author": "Tom",
   "license": "MIT",
   "devDependencies": {
+    "coveralls": "^3.0.9",
+    "mocha": "^7.0.1",
+    "nyc": "^15.0.0",
     "prettier": "^1.19.1",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"

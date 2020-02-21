@@ -1,10 +1,7 @@
-const Base = require("./base.js");
 const fs = require("fs");
 
-module.exports = class LocalEngine extends Base {
+module.exports = class LocalEngine {
   constructor(path, options = {}) {
-    super();
-
     this.path = path;
 
     this.async = options.async || false;
