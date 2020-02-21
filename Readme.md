@@ -195,14 +195,8 @@ Map List, Squaring Each Number in List:
 // before = {'data': [1,2,3,4,5]}
 // after = {'data': [1,4,9,16,25]}
 
-// get values list
-let values = db.get("data").value();
-
-// map list, squaring each number
-values = values.map(x => x ** 2);
-
-// reassign list to db
-db.get("data").set(values);
+// square each number in the list
+db.get("data").map(x => x ** 2);
 
 // save db
 db.save();

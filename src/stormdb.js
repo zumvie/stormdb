@@ -41,6 +41,17 @@ class StormDB {
     return this;
   }
 
+  map(func) {
+    let list = this.value();
+
+    if (!Array.isArray(list)) throw new Error("You can only map lists.");
+
+    list = list.map(func);
+    this.set(list);
+
+    return this;
+  }
+
   get(value) {
     let clone = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
 
