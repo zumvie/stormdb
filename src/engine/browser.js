@@ -1,9 +1,5 @@
-const Base = require("./base.js");
-
-module.exports = class LocalEngine extends Base {
+module.exports = class LocalEngine {
   constructor(path, options = {}) {
-    super();
-
     this.path = path;
 
     this.serialize = options.serialize || JSON.stringify;
