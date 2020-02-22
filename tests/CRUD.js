@@ -209,16 +209,52 @@ describe("StormDB", function() {
     });
   });
 
+  describe(".sort()", function() {
+    it("should sort array", function() {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = StormDB(engine);
+
+      db.get("test-list").sort((a,b) => b-a);
+
+      let updatedList = db.get("test-list").value();
+      assert.deepEqual(updatedList, [5,4,3,2,1]);
+    });
+
+    it("should refuse to sort a non-array", function() {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = StormDB(engine);
+
+      const trySort = () => {
+        db.get("test-string").sort((a,b) => a-b);
+      };
+
+      // should refuse to sort string and therefore should raise an exception
+      assert.throws(trySort, Error);
+    });
+
+    it("should refuse to sort not using function or undefined", function() {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = StormDB(engine);
+
+      const trySort = () => {
+        db.get("test-list").sort("non-function");
+      };
+
+      // should refuse to sort with non-function, not undefined and therefore should raise an exception
+      assert.throws(trySort, Error);
+    });
+  });
+
   describe(".filter()", function() {
     it("should filter array", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
       const db = StormDB(engine);
 
-      db.get("test-list").filter((i) => i > 3);
+      db.get("test-list").filter(i => i > 3);
 
       let updatedList = db.get("test-list").value();
       assert.deepEqual(updatedList, [4, 5]);
-    })
+    });
 
     it("should refuse to filter using non-function", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
@@ -230,7 +266,7 @@ describe("StormDB", function() {
 
       // should refuse to filter with non-function and therefore should raise an exception
       assert.throws(tryFilter, Error);
-    })
+    });
 
     it("should refuse to filter non-array", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
@@ -242,8 +278,8 @@ describe("StormDB", function() {
 
       // should refuse to filter string and therefore should raise an exception
       assert.throws(tryFilter, Error);
-    })
-  })
+    });
+  });
 
   describe(".default()", function() {
     it("default value should be used in place of empty db", function() {
