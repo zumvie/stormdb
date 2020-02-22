@@ -10,10 +10,10 @@
     <img src="https://coveralls.io/repos/github/TomPrograms/stormdb/badge.svg?branch=master&service=github">
   </a>
   <a href="https://npmjs.com/package/stormdb">
-    <img src="https://img.shields.io/npm/v/stormdb?color=brightgreen">
+    <img src="https://img.shields.io/npm/v/stormdb?color=green">
   </a>
   <a href="https://bundlephobia.com/result?p=stormdb">
-    <img src="https://img.shields.io/bundlephobia/minzip/stormdb?color=brightgreen">
+    <img src="https://img.shields.io/bundlephobia/minzip/stormdb?color=green">
   </a>
   <img src="https://img.shields.io/badge/dependencies-0-brightgreen?color=blue">
   <a href="./LICENSE">
