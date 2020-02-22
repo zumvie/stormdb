@@ -55,10 +55,24 @@ class StormDB {
   filter(func) {
     let list = this.value();
 
-    if (typeof func !== "function") throw new Error("You can only pass functions to .filter().")
+    if (typeof func !== "function")
+      throw new Error("You can only pass functions to .filter().");
     if (!Array.isArray(list)) throw new Error("You can only filter lists.");
 
     list = list.filter(func);
+    this.set(list);
+
+    return this;
+  }
+
+  sort(func) {
+    let list = this.value();
+
+    if (typeof func !== "function" && func !== undefined)
+      throw new Error("You can only pass functions or nothing to .sort().");
+    if (!Array.isArray(list)) throw new Error("You can only sort lists.");
+
+    list.sort(func);
     this.set(list);
 
     return this;
