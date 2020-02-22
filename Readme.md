@@ -147,27 +147,13 @@ db.get("list")
 // after: {'list': [1]}
 ```
 
-Filter All Elements under 5:
+Filter Out All Elements under 5:
 
 ```js
 // before = {'list': [1,2,6,1]}
 // output = {'list': [6]}
 
-// get list from db
-let value = db.get("list").value();
-
-// delete all elements with value under 5
-value.forEach(function(el, i) {
-  if (el < 5) {
-    db.get("list")
-      .get(i)
-      .delete();
-  }
-});
-
-// remove all null elements
-value = value.filter(el => el !== null);
-db.get("list").set(value);
+db.get("list").filter(i => i >= 5);
 
 // save db
 db.save();
