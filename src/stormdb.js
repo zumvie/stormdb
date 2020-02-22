@@ -52,6 +52,18 @@ class StormDB {
     return this;
   }
 
+  filter(func) {
+    let list = this.value();
+
+    if (typeof func !== "function") throw new Error("You can only pass functions to .filter().")
+    if (!Array.isArray(list)) throw new Error("You can only filter lists.");
+
+    list = list.filter(func);
+    this.set(list);
+
+    return this;
+  }
+
   get(value) {
     let clone = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
 
