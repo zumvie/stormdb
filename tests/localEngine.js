@@ -11,7 +11,7 @@ const deleteFile = function(fileName) {
   fs.unlinkSync(fileName);
 };
 
-describe("engines", function() {
+describe("Local Engine", function() {
   it("should utilise custom deserialize function", function() {
     const engine = new StormDB.localFileEngine(exampleDBPath, {
       deserialize: () => "deserialized data"
