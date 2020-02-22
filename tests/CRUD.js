@@ -209,6 +209,42 @@ describe("StormDB", function() {
     });
   });
 
+  describe(".filter()", function() {
+    it("should filter array", function() {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = StormDB(engine);
+
+      db.get("test-list").filter((i) => i > 3);
+
+      let updatedList = db.get("test-list").value();
+      assert.deepEqual(updatedList, [4, 5]);
+    })
+
+    it("should refuse to filter using non-function", function() {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = StormDB(engine);
+
+      const tryFilter = () => {
+        db.get("test-list").filter(null);
+      };
+
+      // should refuse to filter with non-function and therefore should raise an exception
+      assert.throws(tryFilter, Error);
+    })
+
+    it("should refuse to filter non-array", function() {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = StormDB(engine);
+
+      const tryFilter = () => {
+        db.get("test-string").filter(() => true);
+      };
+
+      // should refuse to filter string and therefore should raise an exception
+      assert.throws(tryFilter, Error);
+    })
+  })
+
   describe(".default()", function() {
     it("default value should be used in place of empty db", function() {
       // load empty database
