@@ -163,19 +163,12 @@ Change Element with Highest Value:
 
 ```js
 // before = {'users': [{value: 10}, {value: 5}, {value: 6}]}
-// after = {'users': [{value: "changed"}, {value: 5}, {value: 6}]}
+// after = {'users': [{value: "changed"}, {value: 6}, {value: 5}]}
 
-// get list from db
-let values = db.get("users").value();
-
-// sort list with highest value first
-values = values.sort((a, b) => b.value - a.value);
+db.get("users").sort((a, b) => b.value - a.value);
 
 // change value of highest element
-values[0]["value"] = "changed";
-
-// replace list with new list with changed values
-db.get("users").set(values);
+db.get("users").get(0).get("value").set("changed");
 
 // save db
 db.save();
