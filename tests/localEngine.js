@@ -5,7 +5,10 @@ const StormDB = require("../index.js");
 
 const emptyDBPath = path.resolve(__dirname, "./fixtures/empty-file.stormdb");
 const exampleDBPath = path.resolve(__dirname, "./fixtures/example.stormdb");
-const corruptedDBPath = path.resolve(__dirname, "./fixtures/corrupted-db.stormdb");
+const corruptedDBPath = path.resolve(
+  __dirname,
+  "./fixtures/corrupted-db.stormdb"
+);
 
 const deleteFile = function(fileName) {
   fs.unlinkSync(fileName);
@@ -41,7 +44,7 @@ describe("Local Engine", function() {
 
   it("should throw error if trying to read incorrect data", function() {
     const engine = new StormDB.localFileEngine(corruptedDBPath);
-    
+
     const loadDB = () => {
       StormDB(engine);
     };
@@ -66,7 +69,7 @@ describe("Local Engine", function() {
 
       db.save().then(function() {
         done();
-      })
+      });
     });
 
     it(".save() promise should reject is problem writing to file", function() {
@@ -77,12 +80,12 @@ describe("Local Engine", function() {
 
       // purposely induce error by setting erroneous write path
       engine.path = "./nonexistent/file.stormdb";
-      
+
       const saveDB = () => {
         return db.save();
-      }
+      };
 
       assert.rejects(saveDB);
-    })
+    });
   });
 });

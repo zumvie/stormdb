@@ -60,7 +60,7 @@ describe("Browser Engine", function() {
     localStorage.setItem("db", "{");
 
     const engine = new StormDB.browserEngine("db");
-    
+
     const loadDB = () => {
       StormDB(engine);
     };
@@ -72,7 +72,7 @@ describe("Browser Engine", function() {
     // simulate browser local storage
     global.localStorage = new LocalStorage();
     localStorage.setItem("db", '{ "key": "value" }');
-    
+
     const engine = new StormDB.browserEngine("db", {
       deserialize: () => "deserialized data"
     });
