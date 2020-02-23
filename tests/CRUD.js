@@ -13,13 +13,13 @@ const deleteFile = function(fileName) {
 describe("StormDB", function() {
   it("should successfully load local database", function() {
     const engine = new StormDB.localFileEngine(exampleDBPath);
-    StormDB(engine);
+    new StormDB(engine);
   });
 
   describe(".get()", function() {
     it("should successfully get values from database", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       let value = db.get("test-string").value();
       assert.equal(value, "string");
@@ -29,7 +29,7 @@ describe("StormDB", function() {
   describe(".set()", function() {
     it("should successfully change value in database", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.get("test-string").set("changed");
 
@@ -39,7 +39,7 @@ describe("StormDB", function() {
 
     it("should successfully set value in database", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.get("newValue").set("data");
 
@@ -49,7 +49,7 @@ describe("StormDB", function() {
 
     it("should successfully set nested values", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.set("one.two", "test");
 
@@ -62,7 +62,7 @@ describe("StormDB", function() {
 
     it("should successfully set on nested object", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.get("test-obj").set("data", "test");
 
@@ -76,7 +76,7 @@ describe("StormDB", function() {
     describe("setting key-value pair", function() {
       it("should successfully set key-value pair", function() {
         const engine = new StormDB.localFileEngine(exampleDBPath);
-        const db = StormDB(engine);
+        const db = new StormDB(engine);
 
         db.set("newAttribute", "testing");
 
@@ -86,7 +86,7 @@ describe("StormDB", function() {
 
       it("should successfully set key-value pair with shorthand syntax", function() {
         const engine = new StormDB.localFileEngine(exampleDBPath);
-        const db = StormDB(engine);
+        const db = new StormDB(engine);
 
         db.set("one.two", "testing");
 
@@ -99,7 +99,7 @@ describe("StormDB", function() {
 
       it("should be able to use non-strings as key", function() {
         const engine = new StormDB.localFileEngine(exampleDBPath);
-        const db = StormDB(engine);
+        const db = new StormDB(engine);
 
         db.set(1, "testing");
 
@@ -112,7 +112,7 @@ describe("StormDB", function() {
   describe(".delete()", function() {
     it("should successfully remove value from database", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.get("test-string").delete();
 
@@ -122,7 +122,7 @@ describe("StormDB", function() {
 
     it("should successfully remove nested values", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.get("test-obj")
         .get("nested-key")
@@ -142,14 +142,14 @@ describe("StormDB", function() {
       if (fs.existsSync("tempDB.stormdb")) deleteFile("tempDB.stormdb");
 
       const engine = new StormDB.localFileEngine("tempDB.stormdb");
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.set("newValue", "value");
       db.save();
 
       // reload database
       const engine2 = new StormDB.localFileEngine("tempDB.stormdb");
-      const db2 = StormDB(engine2);
+      const db2 = new StormDB(engine2);
 
       let value = db2.get("newValue").value();
       assert.equal(value, "value");
@@ -161,7 +161,7 @@ describe("StormDB", function() {
   describe(".push()", function() {
     it("should push data to an array", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.get("test-list").push("newData");
 
@@ -174,7 +174,7 @@ describe("StormDB", function() {
 
     it("should refuse to push data to a non-array", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       const tryPush = () => {
         db.get("test-string").push("newData");
@@ -188,7 +188,7 @@ describe("StormDB", function() {
   describe(".map()", function() {
     it("should map array", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.get("test-list").map(x => x ** 2);
 
@@ -198,7 +198,7 @@ describe("StormDB", function() {
 
     it("should refuse to map a non-array", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       const tryMap = () => {
         db.get("test-string").map(x => x ** 2);
@@ -212,7 +212,7 @@ describe("StormDB", function() {
   describe(".sort()", function() {
     it("should sort array", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.get("test-list").sort((a,b) => b-a);
 
@@ -222,7 +222,7 @@ describe("StormDB", function() {
 
     it("should refuse to sort a non-array", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       const trySort = () => {
         db.get("test-string").sort((a,b) => a-b);
@@ -234,7 +234,7 @@ describe("StormDB", function() {
 
     it("should refuse to sort not using function or undefined", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       const trySort = () => {
         db.get("test-list").sort("non-function");
@@ -248,7 +248,7 @@ describe("StormDB", function() {
   describe(".filter()", function() {
     it("should filter array", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.get("test-list").filter(i => i > 3);
 
@@ -258,7 +258,7 @@ describe("StormDB", function() {
 
     it("should refuse to filter using non-function", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       const tryFilter = () => {
         db.get("test-list").filter(null);
@@ -270,7 +270,7 @@ describe("StormDB", function() {
 
     it("should refuse to filter non-array", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       const tryFilter = () => {
         db.get("test-string").filter(() => true);
@@ -285,7 +285,7 @@ describe("StormDB", function() {
     it("default value should be used in place of empty db", function() {
       // load empty database
       const engine = new StormDB.localFileEngine(emptyDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.default({ defaulted: "defaultString" });
 
@@ -296,7 +296,7 @@ describe("StormDB", function() {
     it("default value shouldn't be used with non-empty db", function() {
       // load non-empty database
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.default({ defaulted: "defaultString" });
 
@@ -309,7 +309,7 @@ describe("StormDB", function() {
   describe(".length()", function() {
     it("should get lengths of db entries on .value()", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       let length = db
         .get("test-list")

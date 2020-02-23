@@ -22,7 +22,7 @@ describe("Browser Engine", function() {
     localStorage.setItem("db", '{ "key": "value" }');
 
     const engine = new StormDB.browserEngine("db");
-    const db = StormDB(engine);
+    const db = new StormDB(engine);
 
     let value = db.get("key").value();
     assert.equal(value, "value");
@@ -32,7 +32,7 @@ describe("Browser Engine", function() {
     global.localStorage = new LocalStorage();
 
     const engine = new StormDB.browserEngine("db");
-    const db = StormDB(engine);
+    const db = new StormDB(engine);
 
     let value = db.value();
     assert.deepEqual(value, {});
@@ -44,7 +44,7 @@ describe("Browser Engine", function() {
     localStorage.setItem("db", '{ "key": "value" }');
 
     const engine = new StormDB.browserEngine("db");
-    const db = StormDB(engine);
+    const db = new StormDB(engine);
 
     db.set("key", "newValue");
     db.save();
@@ -62,7 +62,7 @@ describe("Browser Engine", function() {
     const engine = new StormDB.browserEngine("db");
 
     const loadDB = () => {
-      StormDB(engine);
+      new StormDB(engine);
     };
 
     assert.throws(loadDB, Error);
@@ -76,7 +76,7 @@ describe("Browser Engine", function() {
     const engine = new StormDB.browserEngine("db", {
       deserialize: () => "deserialized data"
     });
-    const db = StormDB(engine);
+    const db = new StormDB(engine);
 
     let value = db.value();
     assert.equal(value, "deserialized data");
@@ -90,7 +90,7 @@ describe("Browser Engine", function() {
     const engine = new StormDB.browserEngine("db", {
       serialize: () => "serialized data"
     });
-    const db = StormDB(engine);
+    const db = new StormDB(engine);
 
     db.save();
 

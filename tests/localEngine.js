@@ -19,7 +19,7 @@ describe("Local Engine", function() {
     const engine = new StormDB.localFileEngine(exampleDBPath, {
       deserialize: () => "deserialized data"
     });
-    const db = StormDB(engine);
+    const db = new StormDB(engine);
 
     let value = db.value();
     assert.equal(value, "deserialized data");
@@ -32,7 +32,7 @@ describe("Local Engine", function() {
     const engine = new StormDB.localFileEngine("tempDB.stormdb", {
       serialize: () => "serialized data"
     });
-    const db = StormDB(engine);
+    const db = new StormDB(engine);
 
     db.save();
 
@@ -46,7 +46,7 @@ describe("Local Engine", function() {
     const engine = new StormDB.localFileEngine(corruptedDBPath);
 
     const loadDB = () => {
-      StormDB(engine);
+      new StormDB(engine);
     };
 
     assert.throws(loadDB, Error);
@@ -54,7 +54,7 @@ describe("Local Engine", function() {
 
   it("if database file empty, empty JSON object should be used", function() {
     const engine = new StormDB.localFileEngine(emptyDBPath);
-    const db = StormDB(engine);
+    const db = new StormDB(engine);
 
     let dbValue = db.value();
     assert.deepEqual(dbValue, {});
@@ -65,7 +65,7 @@ describe("Local Engine", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath, {
         async: true
       });
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       db.save().then(function() {
         done();
@@ -76,7 +76,7 @@ describe("Local Engine", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath, {
         async: true
       });
-      const db = StormDB(engine);
+      const db = new StormDB(engine);
 
       // purposely induce error by setting erroneous write path
       engine.path = "./nonexistent/file.stormdb";
