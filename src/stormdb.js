@@ -138,6 +138,4 @@ class StormDB {
   }
 }
 
-module.exports = function(engine, options = {}) {
-  return new StormDB(engine, options);
-};
+module.exports = StormDB;
