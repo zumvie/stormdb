@@ -13,7 +13,7 @@ function deleteDB(path) {
 
 function createDatabase(num) {
   const engine = new StormDB.localFileEngine(path);
-  const db = StormDB(engine);
+  const db = new StormDB(engine);
 
   for (let i = 0; i < num; i++) {
     db.set(i, "val");
