@@ -7,7 +7,7 @@ const StormDB = require("stormdb");
 
 // start db with "./db.stormdb" storage location
 const engine = new StormDB.localFileEngine("./db.stormdb");
-const db = StormDB(engine);
+const db = new StormDB(engine);
 
 db.default({ users: [] });
 db.get("users").push({ name: "tom" });
@@ -25,7 +25,7 @@ const StormDB = require("stormdb");
 const engine = new StormDB.localFileEngine("./db.stormdb", {
   async: true
 });
-const db = StormDB(engine);
+const db = new StormDB(engine);
 
 db.default({ users: [] });
 db.get("users").push({ name: "tom" });

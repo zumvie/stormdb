@@ -21,7 +21,7 @@ function runBenchmark(numberToInsert) {
   if (fs.existsSync(path)) deleteDB(path);
 
   const engine = new StormDB.localFileEngine(path);
-  const db = StormDB(engine);
+  const db = new StormDB(engine);
 
   /* start of core speed test */
   let start = +new Date();
