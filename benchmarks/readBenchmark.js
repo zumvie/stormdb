@@ -35,7 +35,7 @@ function runBenchmark(numberToInsert) {
   let start = +new Date();
 
   const engine = new StormDB.localFileEngine(path);
-  const db = StormDB(engine);
+  const db = new StormDB(engine);
 
   let end = +new Date();
   /* end of core speed test */

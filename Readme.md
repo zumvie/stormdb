@@ -53,7 +53,7 @@ const StormDB = require("stormdb");
 
 // start db with "./db.stormdb" storage location
 const engine = new StormDB.localFileEngine("./db.stormdb");
-const db = StormDB(engine);
+const db = new StormDB(engine);
 
 // set default db value if db is empty
 db.default({ users: [] });
@@ -200,7 +200,7 @@ const engine = new StormDB.localFileEngine("./db.stormdb", {
     return JSON.parse(decrypt(data));
   }
 });
-const db = StormDB(engine);
+const db = new StormDB(engine);
 ```
 
 ## Credit
