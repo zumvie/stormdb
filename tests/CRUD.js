@@ -214,10 +214,10 @@ describe("StormDB", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
       const db = new StormDB(engine);
 
-      db.get("test-list").sort((a,b) => b-a);
+      db.get("test-list").sort((a, b) => b - a);
 
       let updatedList = db.get("test-list").value();
-      assert.deepEqual(updatedList, [5,4,3,2,1]);
+      assert.deepEqual(updatedList, [5, 4, 3, 2, 1]);
     });
 
     it("should refuse to sort a non-array", function() {
@@ -225,7 +225,7 @@ describe("StormDB", function() {
       const db = new StormDB(engine);
 
       const trySort = () => {
-        db.get("test-string").sort((a,b) => a-b);
+        db.get("test-string").sort((a, b) => a - b);
       };
 
       // should refuse to sort string and therefore should raise an exception

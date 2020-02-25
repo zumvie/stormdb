@@ -168,7 +168,10 @@ Change Element with Highest Value:
 db.get("users").sort((a, b) => b.value - a.value);
 
 // change value of highest element
-db.get("users").get(0).get("value").set("changed");
+db.get("users")
+  .get(0)
+  .get("value")
+  .set("changed");
 
 // save db
 db.save();
