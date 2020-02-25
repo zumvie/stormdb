@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "description": "StormDB is a tiny, lightweight, 0 dependency, easy-to-use JSON-based database for NodeJS, the browser or Electron.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "webpack --config .webpack.config.js",
     "prepublishOnly": "npm run build",
