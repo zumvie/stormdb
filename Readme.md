@@ -81,6 +81,16 @@ The `db.stormdb` database file is updated to:
 }
 ```
 
+Typescript Usage:
+
+```ts
+import StormDB from "stormdb";
+
+// start db with "./db.stormdb" storage location
+const engine = new StormDB.localFileEngine("./db.stormdb");
+const db = new StormDB(engine);
+```
+
 StormDB is designed to be flexible, and can be used in NodeJS, the browser or even Electron with very small adaptations to the code. Examples usages can be seen below:
 
 - [Browser Usage](./examples/browser.md)
