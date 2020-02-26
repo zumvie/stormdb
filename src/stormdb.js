@@ -80,10 +80,7 @@ class StormDB {
 
   get(value) {
     let clone = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
-
-    clone.pointers = [...clone.pointers];
-    clone.pointers.push(value);
-
+    clone.pointers = [...clone.pointers, value];
     return clone;
   }
 
