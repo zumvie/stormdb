@@ -31,7 +31,8 @@ db.default({ users: [] });
 db.get("users").push({ name: "tom" });
 
 // asynchronous database save
-db.save().then(function() { // equals "Promise { <pending> }"
-  console.log("Finished Saving Database!");
-});
+db.save() // equals "Promise { <pending> }"
+  .then(function() {
+    console.log("Finished Saving Database!");
+  });
 ```
