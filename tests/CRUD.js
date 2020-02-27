@@ -272,7 +272,7 @@ describe("StormDB", function() {
       assert.throws(tryReduce, Error);
     });
 
-    it("should refuse to reduce not using function or undefined", function() {
+    it("should refuse to reduce using non-function", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
       const db = new StormDB(engine);
 
