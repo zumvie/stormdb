@@ -44,6 +44,8 @@ class StormDB {
   map(func) {
     let list = this.value();
 
+    if (typeof func !== "function")
+      throw new Error("You can only pass functions to .map().");
     if (!Array.isArray(list)) throw new Error("You can only map lists.");
 
     list = list.map(func);
