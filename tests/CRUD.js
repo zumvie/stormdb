@@ -207,6 +207,18 @@ describe("StormDB", function() {
       // should refuse to map string and therefore should raise an exception
       assert.throws(tryMap, Error);
     });
+
+    it("should refuse to map using non-function", function() {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = new StormDB(engine);
+
+      const tryMap = () => {
+        db.get("test-list").map("non-function");
+      };
+
+      // should refuse to map with non-function and therefore should raise an exception
+      assert.throws(tryMap, Error);
+    });
   });
 
   describe(".sort()", function() {
