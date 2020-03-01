@@ -1,3 +1,9 @@
+# 0.3.0 - 01/03/2020
+
+## Added
+
+- `.reduce()` function to StormDB.
+
 # 0.2.0 - 25/02/2020
 
 ## Added
