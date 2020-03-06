@@ -23,7 +23,7 @@
 
 <br>
 
-<p> Try it online now! <a href="https://tomprograms.github.io/stormdb">Demo Page and Interactive Playground</a></p>
+<p> Try it online now: <a href="https://tomprograms.github.io/stormdb">Demo Page and Interactive Playground!</a></p>
 
 > Example: Add a post entry under users.tom and save it to the database.
 
