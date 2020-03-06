@@ -9,17 +9,21 @@ const errorOutput = document.getElementById("errorOutput");
 
 function displayError(errorMsg) {
   errorOutput.innerText = errorMsg;
-};
+}
 
 // ensure db doesn't break on loading corrupted data
 const engine = new BrowserEngine("db");
 let db;
 try {
-  db =  new StormDB(engine);
-} catch(error) {
+  db = new StormDB(engine);
+} catch (error) {
   localStorage.setItem("db", "{}");
   db = new StormDB(engine);
-  displayError(new Error("Had to reset database due to corrupted or invalid database data."));
+  displayError(
+    new Error(
+      "Had to reset database due to corrupted or invalid database data."
+    )
+  );
 }
 
 db.default({
@@ -71,7 +75,7 @@ const updateDatabaseState = function() {
 
 function clearError() {
   errorOutput.innerText = "";
-};
+}
 
 // update database state on load
 updateDatabaseState();
@@ -96,11 +100,16 @@ reloadButton.addEventListener("click", function() {
     if (loadedData && typeof loadedData === "object") {
       db.state = loadedData;
     } else {
-      throw new Error("Failed to load StormDB database file - invalid or corrupted format.");
+      throw new Error(
+        "Failed to load StormDB database file - invalid or corrupted format."
+      );
     }
-
   } catch (error) {
-    displayError(error);
+    displayError(
+      new Error(
+        "Failed to load StormDB database file - invalid or corrupted format."
+      )
+    );
   }
   updateDatabaseState();
 });
@@ -143,12 +152,17 @@ demoSelector.addEventListener("change", function() {
 });
 
 async function loadVersion() {
-  fetch('https://unpkg.com/stormdb@0.3.0/package.json').then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    let versionNumber = data.version;
+  fetch("https://unpkg.com/stormdb@0.3.0/package.json")
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      let versionNumber = data.version;
 
-    document.getElementById("versionNumber").innerText = `StormDB v${versionNumber}`;
-  }).catch(function(error) {});
+      document.getElementById(
+        "versionNumber"
+      ).innerText = `StormDB v${versionNumber}`;
+    })
+    .catch(function(error) {});
 }
 loadVersion();
