@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>StormDB Online</title>
+    <link rel="stylesheet" href="./web/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <button id="runBtn" class="btn">Run</button>
+    <button id="reloadBtn" class="btn">Reload</button>
+    <button id="saveBtn" class="btn">Save</button>
+    <button id="resetBtn" class="btn">Reset Database</button>
+    <select id="demoSelector" class="btn"></select>
+    <p id="versionNumber">Loading Version</p>
+
+    <div id="editor"></div>
+    <div id="stateDisplay">
+      <p id="outputTitle">Current Database State</p>
+      <p id="errorOutput"></p>
+      <pre id="stateContents" class="output"></pre>
+    </div>
+
+    <script src="https://unpkg.com/stormdb/dist/StormDB.min.js"></script>
+    <script src="https://unpkg.com/stormdb/dist/BrowserEngine.min.js"></script>
+
+    <script src="https://unpkg.com/codeflask/build/codeflask.min.js"></script>
+
+    <script src="./web/demos.js"></script>
+    <script src="./web/index.js"></script>
+  </body>
+</html>

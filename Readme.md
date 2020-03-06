@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./docs/logo.png" alt="StormDB logo">
 
-  <p>🌩️ StormDB is a tiny, lightweight, 0 dependency, easy-to-use JSON-based database that allows users to quickly and easily achieve data persistence by provided an engine to store and access JSON data, for NodeJS the browser or Electron.</p>
+  <p>🌩️ StormDB is a tiny, lightweight, 0 dependency, easy-to-use JSON-based database that allows users to quickly and easily achieve data persistence by provided an engine to store and access JSON data for NodeJS the browser or Electron.</p>
 
   <a href="https://travis-ci.org/TomPrograms/stormdb">
     <img src="https://travis-ci.org/TomPrograms/stormdb.svg?branch=master">
@@ -22,6 +22,8 @@
 </div>
 
 <br>
+
+<p> Try it online now! <a href="https://tomprograms.github.io/stormdb">Demo Page and Interactive Playground</a></p>
 
 > Example: Add a post entry under users.tom and save it to the database.
 
@@ -95,6 +97,7 @@ StormDB is designed to be flexible, and can be used in NodeJS, the browser or ev
 
 - [Browser Usage](./examples/browser.md)
 - [NodeJS Server](./examples/node.md)
+- [Online Demo and Playground](https://tomprograms.github.io/stormdb)
 
 ## Engine API
 

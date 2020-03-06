@@ -1,0 +1,96 @@
+html {
+  font-family: "Roboto Mono";
+  color: black;
+}
+
+.btn {
+  margin-bottom: 3px;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 5px 20px;
+  color: white;
+}
+
+#runBtn {
+  background-color: #5cb85c;
+  border: 2px solid #4cae4c;
+}
+
+#reloadBtn {
+  background-color: #4cbb17;
+  border: 2px solid #4cbb17;
+}
+
+#saveBtn {
+  background-color: #17a2b8;
+  border: 2px solid #17a2b8;
+}
+
+#resetBtn {
+  background-color: #dc3545;
+  border: 2px solid #dc3545;
+}
+
+#demoSelector {
+  background-color: #007bff;
+  border: 2px solid #007bff;
+}
+
+#editor {
+  width: 50%;
+  height: 100%;
+  height: calc(100% - 45px);
+  left: 0;
+  position: fixed;
+  border-right: 2px solid grey;
+  border-top: 2px solid grey;
+}
+
+#stateDisplay {
+  width: calc(50% - 4px);
+  height: calc(100% - 45px);
+  right: 0;
+  position: fixed;
+  border-right: 2px solid grey;
+  border-top: 2px solid grey;
+  overflow-y: scroll;
+}
+
+#outputTitle {
+  margin: 1px 10px;
+  font-size: 1.2rem;
+}
+
+#errorOutput {
+  margin: 1px 10px;
+  color: red;
+  font-size: 0.8rem;
+}
+
+#versionNumber {
+  display: inline;
+  font-size: 15px;
+}
+
+.output {
+  margin: 1px 10px;
+  padding-top: 0;
+  font-size: 13px;
+}
+
+/* JSON syntax highlighting */
+.string {
+  color: green;
+}
+.number {
+  color: darkorange;
+}
+.boolean {
+  color: blue;
+}
+.null {
+  color: magenta;
+}
+.key {
+  color: red;
+}
