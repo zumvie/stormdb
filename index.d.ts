@@ -14,6 +14,7 @@ declare module 'stormdb' {
     map<T>(func: (value: any, index?: number, array?: any[]) => T): StormDB;
     sort<T>(func: (a: T, b: T) => number): StormDB;
     filter<T, S extends T>(func: (value: T, index?: number, array?: T[]) => value is S): StormDB;
+    reduce(func: any): StormDB;
     value(): any;
     setValue(value: any, pointers: any[], setRecursively?: boolean): void;
     save(): Promise<void> | null;
