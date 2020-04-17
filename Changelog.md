@@ -1,3 +1,13 @@
+# 0.3.1
+
+## Added
+
+- `.reduce()` to type declaration file
+
+## Fixed
+
+- Small typos
+
 # 0.3.0 - 01/03/2020
 
 ## Added
