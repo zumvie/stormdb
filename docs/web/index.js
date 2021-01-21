@@ -6,15 +6,22 @@ const saveButton = document.getElementById("saveBtn");
 const resetButton = document.getElementById("resetBtn");
 const copyButton = document.getElementById("copyBtn");
 const demoSelector = document.getElementById("demoSelector");
-const errorOutput = document.getElementById("errorOutput");
+const outputDiv = document.getElementById("output");
 
 function getQueryVariable(variable) {
   return new URLSearchParams(window.location.search).get(variable);
 }
 
-function displayError(errorMsg) {
-  errorOutput.innerText = errorMsg;
-}
+var displayOutput = function(msg, colour = "black") {
+  const p = document.createElement("p");
+  p.textContent = msg;
+  p.classList += " output";
+  p.style.color = colour;
+  outputDiv.appendChild(p);
+};
+
+console.log = console.error = (msg, colour) =>
+  displayOutput("Output: " + msg, "blue");
 
 // ensure db doesn't break on loading corrupted data
 const engine = new BrowserEngine("db");
@@ -24,10 +31,11 @@ try {
 } catch (error) {
   localStorage.setItem("db", "{}");
   db = new StormDB(engine);
-  displayError(
+  displayOutput(
     new Error(
       "Had to reset database due to corrupted or invalid database data."
-    )
+    ),
+    "red"
   );
 }
 
@@ -69,7 +77,7 @@ const updateDatabaseState = function() {
 };
 
 function clearError() {
-  errorOutput.innerText = "";
+  outputDiv.innerText = "";
 }
 
 // update database state on load
@@ -82,7 +90,7 @@ runButton.addEventListener("click", function() {
     eval(codeToRun);
     updateDatabaseState();
   } catch (error) {
-    displayError(error);
+    displayOutput(error, "red");
   }
 });
 
@@ -100,10 +108,11 @@ reloadButton.addEventListener("click", function() {
       );
     }
   } catch (error) {
-    displayError(
+    displayOutput(
       new Error(
         "Failed to load StormDB database file - invalid or corrupted format."
-      )
+      ),
+      "red"
     );
   }
   updateDatabaseState();
@@ -150,21 +159,6 @@ if (queryCode !== null) {
   loadDemo(demoKeys[0]);
 }
 
-let queryData = getQueryVariable("data");
-if (queryData !== null) {
-  db.default(decodeURI(queryCode));
-} else {
-  db.default({
-    list: [1, 2, 3],
-    string: "test",
-    numbers: 123,
-    objects: {
-      property: "test property"
-    }
-  });
-}
-db.save();
-
 async function loadVersion() {
   fetch("https://unpkg.com/stormdb/package.json")
     .then(function(response) {
@@ -185,6 +179,5 @@ loadVersion();
 copyButton.addEventListener("click", function() {
   let url = new URL(window.location.href);
   url.searchParams.set("code", encodeURI(editor.getCode()));
-  url.searchParams.set("data", encodeURI(db.value()));
   navigator.clipboard.writeText(url);
 });
