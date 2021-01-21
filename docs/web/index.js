@@ -4,8 +4,13 @@ const runButton = document.getElementById("runBtn");
 const reloadButton = document.getElementById("reloadBtn");
 const saveButton = document.getElementById("saveBtn");
 const resetButton = document.getElementById("resetBtn");
+const copyButton = document.getElementById("copyBtn");
 const demoSelector = document.getElementById("demoSelector");
 const errorOutput = document.getElementById("errorOutput");
+
+function getQueryVariable(variable) {
+  return new URLSearchParams(window.location.search).get(variable);
+}
 
 function displayError(errorMsg) {
   errorOutput.innerText = errorMsg;
@@ -25,16 +30,6 @@ try {
     )
   );
 }
-
-db.default({
-  list: [1, 2, 3],
-  string: "test",
-  numbers: 123,
-  objects: {
-    property: "test property"
-  }
-});
-db.save();
 
 // Credit for JSON syntax highlighting goes to: https://stackoverflow.com/a/7220510
 function syntaxHighlight(json) {
@@ -144,12 +139,33 @@ demoKeys.forEach(key => {
   demoSelector.appendChild(option);
 });
 
-// load first demo
-loadDemo(demoKeys[0]);
-
 demoSelector.addEventListener("change", function() {
   loadDemo(demoSelector.value);
 });
+
+
+let queryCode = getQueryVariable("code");
+if (queryCode !== "") {
+  editor.updateCode(decodeURI(queryCode));
+  demoSelector.value = "custom";
+} else {
+  loadDemo(demoKeys[0]);
+}
+
+let queryData = getQueryVariable("data");
+if (queryData !== "") {
+  db.default(decodeURI(queryCode));
+} else {
+  db.default({
+    list: [1, 2, 3],
+    string: "test",
+    numbers: 123,
+    objects: {
+      property: "test property"
+    }
+  });
+}
+db.save();
 
 async function loadVersion() {
   fetch("https://unpkg.com/stormdb/package.json")
@@ -166,3 +182,11 @@ async function loadVersion() {
     .catch(function(error) {});
 }
 loadVersion();
+
+// copy URL function
+copyButton.addEventListener("click", function() {
+  let url = new URL(window.location.href);
+  url.searchParams.set("code", encodeURI(editor.getCode()));
+  url.searchParams.set("data", encodeURI(db.value()));
+  navigator.clipboard.writeText(url);
+});
