@@ -16,6 +16,20 @@ describe("StormDB", function() {
     new StormDB(engine);
   });
 
+  describe(".value()", function() {
+    it("should throw error on non-existant data", function() {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = new StormDB(engine);
+
+      assert.throws(() =>
+        db
+          .get("random123")
+          .get("random123")
+          .value()
+      );
+    });
+  });
+
   describe(".get()", function() {
     it("should successfully get values from database", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
