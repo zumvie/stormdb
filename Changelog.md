@@ -1,3 +1,9 @@
+# 0.4.1
+
+## Removed
+
+- Travis CI and Coveralls
+
 # 0.4.0
 
 ## Added
