@@ -1,3 +1,10 @@
+# 0.4.0
+
+## Added
+
+- Allowed chaining multiple property accessors in one `.get()` e.g. `.get("a.b")`.
+- Error handling after running `.value()` after chaining multiple `.get()` of non-existant properties.
+
 # 0.3.1
 
 ## Added
