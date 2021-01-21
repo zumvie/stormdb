@@ -94,8 +94,12 @@ class StormDB {
   }
 
   get(value) {
+    let extraPointers;
+    if (typeof value === "string") extraPointers = value.split(".");
+    else extraPointers = [value];
+
     let clone = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
-    clone.pointers = [...clone.pointers, value];
+    clone.pointers = [...clone.pointers, ...extraPointers];
     return clone;
   }
 
