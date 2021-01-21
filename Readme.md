@@ -116,6 +116,13 @@ db.get("old").set("newData");
 // after: {"old": "newData"}
 ```
 
+Return the Raw Value of a Selected Property:
+
+```js
+// before {"list": [1, 2, 3]}
+db.get("list").value(); // returns [1, 2, 3]
+```
+
 Set Key-Value Pair on Dictionary Property:
 
 ```js
