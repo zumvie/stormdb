@@ -21,7 +21,7 @@ var displayOutput = function(msg, colour = "black") {
 };
 
 console.log = console.error = (msg, colour) =>
-  displayOutput("Output: " + msg, "blue");
+  displayOutput("Output: " + JSON.stringify(msg), "blue");
 
 // ensure db doesn't break on loading corrupted data
 const engine = new BrowserEngine("db");
