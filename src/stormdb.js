@@ -119,6 +119,9 @@ class StormDB {
   value() {
     let data = this.state;
     for (let i = 0; i < this.pointers.length; i++) {
+      if (i < this.pointers.length - 1 && !data[this.pointers[i]]) {
+        throw new Error("Can't run .value() on non-existant data.");
+      }
       data = data[this.pointers[i]];
     }
 
