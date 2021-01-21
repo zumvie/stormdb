@@ -22,7 +22,7 @@ describe("StormDB", function() {
       const db = new StormDB(engine);
 
       let value = db.get("test-string").value();
-      assert.equal(value, "string");
+      assert.strictEqual(value, "string");
     });
 
     it("should successfully get values with multiple property accessors", function() {
@@ -30,7 +30,7 @@ describe("StormDB", function() {
       const db = new StormDB(engine);
 
       let value = db.get("test-obj.nested-key").value();
-      assert.equal(value, "nested-value");
+      assert.strictEqual(value, "nested-value");
     });
   });
 
@@ -42,7 +42,7 @@ describe("StormDB", function() {
       db.get("test-string").set("changed");
 
       let value = db.get("test-string").value();
-      assert.equal(value, "changed");
+      assert.strictEqual(value, "changed");
     });
 
     it("should successfully set value in database", function() {
@@ -52,7 +52,7 @@ describe("StormDB", function() {
       db.get("newValue").set("data");
 
       let value = db.get("newValue").value();
-      assert.equal(value, "data");
+      assert.strictEqual(value, "data");
     });
 
     it("should successfully set nested values with multiple property accessors", function() {
@@ -65,7 +65,7 @@ describe("StormDB", function() {
         .get("one")
         .get("two")
         .value();
-      assert.equal(value, "test");
+      assert.strictEqual(value, "test");
     });
 
     it("should successfully set on nested object", function() {
@@ -78,7 +78,7 @@ describe("StormDB", function() {
         .get("test-obj")
         .get("data")
         .value();
-      assert.equal(value, "test");
+      assert.strictEqual(value, "test");
     });
 
     describe("setting key-value pair", function() {
@@ -89,7 +89,7 @@ describe("StormDB", function() {
         db.set("newAttribute", "testing");
 
         let value = db.get("newAttribute").value();
-        assert.equal(value, "testing");
+        assert.strictEqual(value, "testing");
       });
 
       it("should successfully set key-value pair with shorthand syntax", function() {
@@ -102,7 +102,7 @@ describe("StormDB", function() {
           .get("one")
           .get("two")
           .value();
-        assert.equal(value, "testing");
+        assert.strictEqual(value, "testing");
       });
 
       it("should be able to use non-strings as key", function() {
@@ -112,7 +112,7 @@ describe("StormDB", function() {
         db.set(1, "testing");
 
         let value = db.get(1).value();
-        assert.equal(value, "testing");
+        assert.strictEqual(value, "testing");
       });
     });
   });
@@ -125,7 +125,7 @@ describe("StormDB", function() {
       db.get("test-string").delete();
 
       let value = db.get("test-string").value();
-      assert.equal(value, undefined);
+      assert.strictEqual(value, undefined);
     });
 
     it("should successfully remove nested values", function() {
@@ -140,7 +140,7 @@ describe("StormDB", function() {
         .get("test-obj")
         .get("nested-key")
         .value();
-      assert.equal(value, undefined);
+      assert.strictEqual(value, undefined);
     });
   });
 
@@ -160,7 +160,7 @@ describe("StormDB", function() {
       const db2 = new StormDB(engine2);
 
       let value = db2.get("newValue").value();
-      assert.equal(value, "value");
+      assert.strictEqual(value, "value");
 
       deleteFile("tempDB.stormdb");
     });
@@ -201,7 +201,7 @@ describe("StormDB", function() {
       db.get("test-list").map(x => x ** 2);
 
       let updatedList = db.get("test-list").value();
-      assert.deepEqual(updatedList, [1, 4, 9, 16, 25]);
+      assert.deepStrictEqual(updatedList, [1, 4, 9, 16, 25]);
     });
 
     it("should refuse to map a non-array", function() {
@@ -237,7 +237,7 @@ describe("StormDB", function() {
       db.get("test-list").sort((a, b) => b - a);
 
       let updatedList = db.get("test-list").value();
-      assert.deepEqual(updatedList, [5, 4, 3, 2, 1]);
+      assert.deepStrictEqual(updatedList, [5, 4, 3, 2, 1]);
     });
 
     it("should refuse to sort a non-array", function() {
@@ -275,7 +275,7 @@ describe("StormDB", function() {
       );
 
       let updatedList = db.get("test-list").value();
-      assert.deepEqual(updatedList, 15);
+      assert.deepStrictEqual(updatedList, 15);
     });
 
     it("should refuse to reduce a non-array", function() {
@@ -313,7 +313,7 @@ describe("StormDB", function() {
       db.get("test-list").filter(i => i > 3);
 
       let updatedList = db.get("test-list").value();
-      assert.deepEqual(updatedList, [4, 5]);
+      assert.deepStrictEqual(updatedList, [4, 5]);
     });
 
     it("should refuse to filter using non-function", function() {
@@ -350,7 +350,7 @@ describe("StormDB", function() {
       db.default({ defaulted: "defaultString" });
 
       let defaultedKey = db.get("defaulted").value();
-      assert.equal(defaultedKey, "defaultString");
+      assert.strictEqual(defaultedKey, "defaultString");
     });
 
     it("default value shouldn't be used with non-empty db", function() {
@@ -362,7 +362,7 @@ describe("StormDB", function() {
 
       let defaultedKey = db.get("defaulted").value();
       // if default value not used, key should be undefined in db
-      assert.equal(defaultedKey, undefined);
+      assert.strictEqual(defaultedKey, undefined);
     });
   });
 
@@ -375,7 +375,7 @@ describe("StormDB", function() {
         .get("test-list")
         .length()
         .value();
-      assert.equal(length, 5);
+      assert.strictEqual(length, 5);
     });
   });
 });

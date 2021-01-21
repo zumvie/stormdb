@@ -22,7 +22,7 @@ describe("Local Engine", function() {
     const db = new StormDB(engine);
 
     let value = db.value();
-    assert.equal(value, "deserialized data");
+    assert.strictEqual(value, "deserialized data");
   });
 
   it("should utilise custom serialize function", function() {
@@ -36,8 +36,8 @@ describe("Local Engine", function() {
 
     db.save();
 
-    let savedData = fs.readFileSync("tempDB.stormdb");
-    assert.equal(savedData, "serialized data");
+    let savedData = fs.readFileSync("tempDB.stormdb", 'utf8');
+    assert.strictEqual(savedData, "serialized data");
 
     deleteFile("tempDB.stormdb");
   });
@@ -57,7 +57,7 @@ describe("Local Engine", function() {
     const db = new StormDB(engine);
 
     let dbValue = db.value();
-    assert.deepEqual(dbValue, {});
+    assert.deepStrictEqual(dbValue, {});
   });
 
   describe("async engine option enabled", function() {

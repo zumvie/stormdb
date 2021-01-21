@@ -25,7 +25,7 @@ describe("Browser Engine", function() {
     const db = new StormDB(engine);
 
     let value = db.get("key").value();
-    assert.equal(value, "value");
+    assert.strictEqual(value, "value");
   });
 
   it("should create empty database if it doesn't exist yet", function() {
@@ -35,7 +35,7 @@ describe("Browser Engine", function() {
     const db = new StormDB(engine);
 
     let value = db.value();
-    assert.deepEqual(value, {});
+    assert.deepStrictEqual(value, {});
   });
 
   it("should successfully write data", function() {
@@ -51,7 +51,7 @@ describe("Browser Engine", function() {
 
     // extract updated data
     let savedValue = JSON.parse(localStorage.data.db)["key"];
-    assert.equal(savedValue, "newValue");
+    assert.strictEqual(savedValue, "newValue");
   });
 
   it("should throw error if trying to read incorrect data", function() {
@@ -79,7 +79,7 @@ describe("Browser Engine", function() {
     const db = new StormDB(engine);
 
     let value = db.value();
-    assert.equal(value, "deserialized data");
+    assert.strictEqual(value, "deserialized data");
   });
 
   it("should utilise custom serialize function", function() {
@@ -95,6 +95,6 @@ describe("Browser Engine", function() {
     db.save();
 
     let savedData = localStorage.data.db;
-    assert.equal(savedData, "serialized data");
+    assert.strictEqual(savedData, "serialized data");
   });
 });
