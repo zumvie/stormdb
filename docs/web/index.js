@@ -152,7 +152,7 @@ demoSelector.addEventListener("change", function() {
 });
 
 async function loadVersion() {
-  fetch("https://unpkg.com/stormdb@0.3.0/package.json")
+  fetch("https://unpkg.com/stormdb/package.json")
     .then(function(response) {
       return response.json();
     })
