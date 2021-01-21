@@ -143,17 +143,15 @@ demoSelector.addEventListener("change", function() {
   loadDemo(demoSelector.value);
 });
 
-
 let queryCode = getQueryVariable("code");
-if (queryCode !== "") {
+if (queryCode !== null) {
   editor.updateCode(decodeURI(queryCode));
-  demoSelector.value = "custom";
 } else {
   loadDemo(demoKeys[0]);
 }
 
 let queryData = getQueryVariable("data");
-if (queryData !== "") {
+if (queryData !== null) {
   db.default(decodeURI(queryCode));
 } else {
   db.default({
