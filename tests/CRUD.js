@@ -55,7 +55,7 @@ describe("StormDB", function() {
       assert.equal(value, "data");
     });
 
-    it("should successfully set nested values", function() {
+    it("should successfully set nested values with multiple property accessors", function() {
       const engine = new StormDB.localFileEngine(exampleDBPath);
       const db = new StormDB(engine);
 
