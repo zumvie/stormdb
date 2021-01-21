@@ -36,7 +36,7 @@ describe("Local Engine", function() {
 
     db.save();
 
-    let savedData = fs.readFileSync("tempDB.stormdb", 'utf8');
+    let savedData = fs.readFileSync("tempDB.stormdb", "utf8");
     assert.strictEqual(savedData, "serialized data");
 
     deleteFile("tempDB.stormdb");

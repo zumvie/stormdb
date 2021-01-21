@@ -140,13 +140,13 @@ function loadDemo(key) {
   editor.updateCode(demos[key]["code"]);
 }
 
-db.default({	
-  list: [1, 2, 3],	
-  string: "test",	
-  numbers: 123,	
-  objects: {	
-    property: "test property"	
-  }	
+db.default({
+  list: [1, 2, 3],
+  string: "test",
+  numbers: 123,
+  objects: {
+    property: "test property"
+  }
 });
 db.save();
 
