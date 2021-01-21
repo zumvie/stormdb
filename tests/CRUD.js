@@ -24,6 +24,14 @@ describe("StormDB", function() {
       let value = db.get("test-string").value();
       assert.equal(value, "string");
     });
+
+    it("should successfully get values with multiple property accessors", function() {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = new StormDB(engine);
+
+      let value = db.get("test-obj.nested-key").value();
+      assert.equal(value, "nested-value");
+    });
   });
 
   describe(".set()", function() {
