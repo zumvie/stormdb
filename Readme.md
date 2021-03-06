@@ -30,7 +30,7 @@ db.get("users")
 
 ## Features
 
-- 🏎️ [Blazingly Fast Speeds](./docs/speed.md) - Fast read and write speeds, even when handling large data.
+- 🏎️ [Blazingly Fast Speeds] - Fast read and write speeds, even when handling large data.
 - 📦 [Tiny Size](https://bundlephobia.com/result?p=stormdb) - Tiny source code size allows for blazingly fast loading when speed matters.
 - ⚡️ Versatile - Can be used with NodeJS, in the browser or in Electron.
 
