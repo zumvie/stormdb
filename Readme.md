@@ -129,7 +129,6 @@ Delete Value:
 
 ```js
 db.get("key").delete();
-db.save();
 // before: {'key': 'value', 'key2': 'value2'}
 // after: {'key2': 'value2'}
 ```
