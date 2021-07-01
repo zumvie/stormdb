@@ -8,9 +8,6 @@
     "build": "webpack --config .webpack.config.js",
     "prepublishOnly": "npm run build",
     "format": "prettier --write {**,**/**}/*.{js,md}",
-    "read-benchmark": "node benchmarks/readBenchmark.js",
-    "write-benchmark": "node benchmarks/writeBenchmark.js",
-    "benchmark": "npm run read-benchmark & npm run write-benchmark",
     "test": "mocha ./tests --recursive --exit"
   },
   "repository": "TomPrograms/stormdb",
