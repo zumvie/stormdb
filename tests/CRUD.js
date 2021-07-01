@@ -131,8 +131,28 @@ describe("StormDB", function() {
     });
   });
 
-  describe(".delete()", function() {
-    it("should successfully remove value from database", function() {
+  describe(".delete()", function () {
+    it("should successfully delete from list without reindexing", function () {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = new StormDB(engine);
+
+      db.get("test-list").get(1).delete();
+
+      let value = db.get("test-list").get(1).value();
+      assert.strictEqual(value, undefined);
+    });
+
+    it("should successfully delete from with reindexing", function () {
+      const engine = new StormDB.localFileEngine(exampleDBPath);
+      const db = new StormDB(engine);
+
+      db.get("test-list").get(1).delete(true);
+
+      let value = db.get("test-list").get(1).value();
+      assert.strictEqual(value, 3);
+    });
+
+    it("should successfully remove value from database", function () {
       const engine = new StormDB.localFileEngine(exampleDBPath);
       const db = new StormDB(engine);
 
