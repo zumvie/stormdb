@@ -20,14 +20,19 @@ class StormDB {
     return this;
   }
 
-  delete() {
+  delete(reindexLists = false) {
     let enclosing = this.state;
     for (let i = 0; i < this.pointers.length - 1; i++) {
       enclosing = enclosing[this.pointers[i]];
     }
 
     let final = this.pointers[this.pointers.length - 1];
-    delete enclosing[final];
+
+    if (Array.isArray(enclosing) && reindexLists) {
+      enclosing.splice(final, 1);
+    } else {
+      delete enclosing[final];
+    }
   }
 
   push(value) {
