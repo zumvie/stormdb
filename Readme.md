@@ -133,6 +133,22 @@ db.get("key").delete();
 // after: {'key2': 'value2'}
 ```
 
+If you delete a value from a list, it will leave a null value in the place of the deleted data:
+
+```js
+db.get("key").get(1).delete();
+// before: {'key': [1, 2, 3]}
+// after: {'key2': [1, null, 3]}
+```
+
+If you don't want this behaviour, you can pass in `true` to the `.delete()` function to not leave a null value in place of the deleted data:
+
+```js
+db.get("key").get(1).delete(true);
+// before: {'key': [1, 2, 3]}
+// after: {'key2': [1, 3]}
+```
+
 Set Key-Value Pair on Dictionary with Shorthand Syntax:
 
 ```js
