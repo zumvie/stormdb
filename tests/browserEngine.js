@@ -15,8 +15,8 @@ class LocalStorage {
   }
 }
 
-describe("Browser Engine", function() {
-  it("should successfully read data", function() {
+describe("Browser Engine", function () {
+  it("should successfully read data", function () {
     // simulate browser local storage
     global.localStorage = new LocalStorage();
     localStorage.setItem("db", '{ "key": "value" }');
@@ -28,7 +28,7 @@ describe("Browser Engine", function() {
     assert.strictEqual(value, "value");
   });
 
-  it("should create empty database if it doesn't exist yet", function() {
+  it("should create empty database if it doesn't exist yet", function () {
     global.localStorage = new LocalStorage();
 
     const engine = new StormDB.browserEngine("db");
@@ -38,7 +38,7 @@ describe("Browser Engine", function() {
     assert.deepStrictEqual(value, {});
   });
 
-  it("should successfully write data", function() {
+  it("should successfully write data", function () {
     // simulate browser local storage
     global.localStorage = new LocalStorage();
     localStorage.setItem("db", '{ "key": "value" }');
@@ -54,7 +54,7 @@ describe("Browser Engine", function() {
     assert.strictEqual(savedValue, "newValue");
   });
 
-  it("should throw error if trying to read incorrect data", function() {
+  it("should throw error if trying to read incorrect data", function () {
     // simulate browser local storage with corrupted database
     global.localStorage = new LocalStorage();
     localStorage.setItem("db", "{");
@@ -68,13 +68,13 @@ describe("Browser Engine", function() {
     assert.throws(loadDB, Error);
   });
 
-  it("should utilise custom deserialize function", function() {
+  it("should utilise custom deserialize function", function () {
     // simulate browser local storage
     global.localStorage = new LocalStorage();
     localStorage.setItem("db", '{ "key": "value" }');
 
     const engine = new StormDB.browserEngine("db", {
-      deserialize: () => "deserialized data"
+      deserialize: () => "deserialized data",
     });
     const db = new StormDB(engine);
 
@@ -82,13 +82,13 @@ describe("Browser Engine", function() {
     assert.strictEqual(value, "deserialized data");
   });
 
-  it("should utilise custom serialize function", function() {
+  it("should utilise custom serialize function", function () {
     // simulate browser local storage
     global.localStorage = new LocalStorage();
     localStorage.setItem("db", '{ "key": "value" }');
 
     const engine = new StormDB.browserEngine("db", {
-      serialize: () => "serialized data"
+      serialize: () => "serialized data",
     });
     const db = new StormDB(engine);
 

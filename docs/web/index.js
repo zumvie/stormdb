@@ -12,7 +12,7 @@ function getQueryVariable(variable) {
   return new URLSearchParams(window.location.search).get(variable);
 }
 
-var displayOutput = function(msg, colour = "black") {
+var displayOutput = function (msg, colour = "black") {
   const p = document.createElement("p");
   p.textContent = msg;
   p.classList += " output";
@@ -47,7 +47,7 @@ function syntaxHighlight(json) {
     .replace(/>/g, "&gt;");
   return json.replace(
     /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-    function(match) {
+    function (match) {
       var cls = "number";
       if (/^"/.test(match)) {
         if (/:$/.test(match)) {
@@ -65,11 +65,11 @@ function syntaxHighlight(json) {
   );
 }
 
-const getDBData = function() {
+const getDBData = function () {
   return JSON.stringify(db.value(), null, 4);
 };
 
-const updateDatabaseState = function() {
+const updateDatabaseState = function () {
   const dbData = getDBData();
   stateContents.innerHTML = "";
 
@@ -83,7 +83,7 @@ function clearError() {
 // update database state on load
 updateDatabaseState();
 
-runButton.addEventListener("click", function() {
+runButton.addEventListener("click", function () {
   clearError();
   try {
     let codeToRun = editor.getCode();
@@ -94,7 +94,7 @@ runButton.addEventListener("click", function() {
   }
 });
 
-reloadButton.addEventListener("click", function() {
+reloadButton.addEventListener("click", function () {
   clearError();
   try {
     let loadedData = JSON.parse(localStorage.getItem("db"));
@@ -118,11 +118,11 @@ reloadButton.addEventListener("click", function() {
   updateDatabaseState();
 });
 
-saveButton.addEventListener("click", function() {
+saveButton.addEventListener("click", function () {
   db.save();
 });
 
-resetButton.addEventListener("click", function() {
+resetButton.addEventListener("click", function () {
   clearError();
   db.state = {};
   localStorage.setItem("db", "{}");
@@ -130,7 +130,7 @@ resetButton.addEventListener("click", function() {
 });
 
 const editor = new CodeFlask("#editor", {
-  lineNumbers: true
+  lineNumbers: true,
 });
 
 // demo selector logic
@@ -145,12 +145,12 @@ db.default({
   string: "test",
   numbers: 123,
   objects: {
-    property: "test property"
-  }
+    property: "test property",
+  },
 });
 db.save();
 
-demoKeys.forEach(key => {
+demoKeys.forEach((key) => {
   let demo = demos[key];
   const option = document.createElement("option");
   option.textContent = demo["name"];
@@ -158,7 +158,7 @@ demoKeys.forEach(key => {
   demoSelector.appendChild(option);
 });
 
-demoSelector.addEventListener("change", function() {
+demoSelector.addEventListener("change", function () {
   loadDemo(demoSelector.value);
 });
 
@@ -171,22 +171,22 @@ if (queryCode !== null) {
 
 async function loadVersion() {
   fetch("https://unpkg.com/stormdb/package.json")
-    .then(function(response) {
+    .then(function (response) {
       return response.json();
     })
-    .then(function(data) {
+    .then(function (data) {
       let versionNumber = data.version;
 
       document.getElementById(
         "versionNumber"
       ).innerText = `StormDB v${versionNumber}`;
     })
-    .catch(function(error) {});
+    .catch(function (error) {});
 }
 loadVersion();
 
 // copy URL function
-copyButton.addEventListener("click", function() {
+copyButton.addEventListener("click", function () {
   let url = new URL(window.location.href);
   url.searchParams.set("code", encodeURI(editor.getCode()));
   navigator.clipboard.writeText(url);

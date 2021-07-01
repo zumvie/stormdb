@@ -10,14 +10,14 @@ const corruptedDBPath = path.resolve(
   "./fixtures/corrupted-db.stormdb"
 );
 
-const deleteFile = function(fileName) {
+const deleteFile = function (fileName) {
   fs.unlinkSync(fileName);
 };
 
-describe("Local Engine", function() {
-  it("should utilise custom deserialize function", function() {
+describe("Local Engine", function () {
+  it("should utilise custom deserialize function", function () {
     const engine = new StormDB.localFileEngine(exampleDBPath, {
-      deserialize: () => "deserialized data"
+      deserialize: () => "deserialized data",
     });
     const db = new StormDB(engine);
 
@@ -25,12 +25,12 @@ describe("Local Engine", function() {
     assert.strictEqual(value, "deserialized data");
   });
 
-  it("should utilise custom serialize function", function() {
+  it("should utilise custom serialize function", function () {
     // ensure an existing database isn't used for the test
     if (fs.existsSync("tempDB.stormdb")) deleteFile("tempDB.stormdb");
 
     const engine = new StormDB.localFileEngine("tempDB.stormdb", {
-      serialize: () => "serialized data"
+      serialize: () => "serialized data",
     });
     const db = new StormDB(engine);
 
@@ -42,7 +42,7 @@ describe("Local Engine", function() {
     deleteFile("tempDB.stormdb");
   });
 
-  it("should throw error if trying to read incorrect data", function() {
+  it("should throw error if trying to read incorrect data", function () {
     const engine = new StormDB.localFileEngine(corruptedDBPath);
 
     const loadDB = () => {
@@ -52,7 +52,7 @@ describe("Local Engine", function() {
     assert.throws(loadDB, Error);
   });
 
-  it("if database file empty, empty JSON object should be used", function() {
+  it("if database file empty, empty JSON object should be used", function () {
     const engine = new StormDB.localFileEngine(emptyDBPath);
     const db = new StormDB(engine);
 
@@ -60,21 +60,21 @@ describe("Local Engine", function() {
     assert.deepStrictEqual(dbValue, {});
   });
 
-  describe("async engine option enabled", function() {
-    it(".save() function should return promise", function(done) {
+  describe("async engine option enabled", function () {
+    it(".save() function should return promise", function (done) {
       const engine = new StormDB.localFileEngine(exampleDBPath, {
-        async: true
+        async: true,
       });
       const db = new StormDB(engine);
 
-      db.save().then(function() {
+      db.save().then(function () {
         done();
       });
     });
 
-    it(".save() promise should reject is problem writing to file", function() {
+    it(".save() promise should reject is problem writing to file", function () {
       const engine = new StormDB.localFileEngine(exampleDBPath, {
-        async: true
+        async: true,
       });
       const db = new StormDB(engine);
 

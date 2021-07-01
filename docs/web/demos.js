@@ -6,18 +6,18 @@ const mapItemCode = `db.set("newList", [1, 2, 3]);\ndb.get("newList").map(x => x
 const demos = {
   setItem: {
     code: setItemCode,
-    name: "Set Item"
+    name: "Set Item",
   },
   setItemPair: {
     code: setItemPair,
-    name: "Set Item Pair"
+    name: "Set Item Pair",
   },
   deleteItem: {
     code: deleteItemCode,
-    name: "Delete Item"
+    name: "Delete Item",
   },
   mapItem: {
     code: mapItemCode,
-    name: "Map List"
-  }
+    name: "Map List",
+  },
 };

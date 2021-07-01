@@ -37,8 +37,8 @@ module.exports = class LocalEngine {
     // if async, return promise wrapper around async writefile
     if (this.async) {
       return new Promise(
-        function(resolve, reject) {
-          fs.writeFile(this.path, this.serialize(data), function(error) {
+        function (resolve, reject) {
+          fs.writeFile(this.path, this.serialize(data), function (error) {
             if (error) return reject(error);
             else resolve();
           });
