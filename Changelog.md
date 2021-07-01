@@ -1,3 +1,9 @@
+# 0.5.0
+
+## Added
+
+- Parameter to `.delete()`, to reindex items in a list after deleting an element from a list, if you pass in `true`.
+
 # 0.4.1
 
 ## Removed

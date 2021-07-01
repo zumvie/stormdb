@@ -1,6 +1,6 @@
 {
   "name": "stormdb",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "StormDB is a tiny, lightweight, 0 dependency, easy-to-use JSON-based database for NodeJS, the browser or Electron.",
   "main": "index.js",
   "types": "index.d.ts",
