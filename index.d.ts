@@ -7,7 +7,7 @@ declare module 'stormdb' {
 
     default(defaultValue: object): StormDB;
     length(): StormDB;
-    delete(): void;
+    delete(reindexLists: boolean): void;
     push(value: any): void;
     get(value: any): StormDB;
     set(key: any, value: any): StormDB;
