@@ -10,7 +10,7 @@ declare module 'stormdb' {
     delete(reindexLists: boolean): void;
     push(value: any): void;
     get(value: any): StormDB;
-    set(key: any, value: any): StormDB;
+    set(key: any, value?: any): StormDB;
     map<T>(func: (value: any, index?: number, array?: any[]) => T): StormDB;
     sort<T>(func: (a: T, b: T) => number): StormDB;
     filter<T, S extends T>(func: (value: T, index?: number, array?: T[]) => value is S): StormDB;
