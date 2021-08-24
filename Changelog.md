@@ -1,3 +1,15 @@
+# 0.5.2
+
+## Fixed
+
+- Type declarations files.
+
+# 0.5.1
+
+## Fixed
+
+- Type declarations files.
+
 # 0.5.0
 
 ## Added
