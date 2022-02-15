@@ -34,6 +34,8 @@ db.get("users")
 - 📦 [Tiny Size](https://bundlephobia.com/result?p=stormdb) - Tiny source code size allows for blazingly fast loading when speed matters.
 - ⚡️ Versatile - Can be used with NodeJS, in the browser or in Electron.
 
+## Options
+
 ## Usage
 
 Install StormDB through NPM:
@@ -49,7 +51,10 @@ const StormDB = require("stormdb");
 
 // start db with "./db.stormdb" storage location
 const engine = new StormDB.localFileEngine("./db.stormdb");
-const db = new StormDB(engine);
+const db = new StormDB(engine, {
+  // dot notation enables splitting passed property name by "." and map each token as a property name
+  enableDotNotation: false // default is true, 
+});
 
 // set default db value if db is empty
 db.default({ users: [] });

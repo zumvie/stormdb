@@ -1,6 +1,11 @@
 class StormDB {
-  constructor(engine) {
+  constructor(engine, options) {
     this.engine = engine;
+    this.options = options || {};
+
+    if (typeof this.options.ignoreDots !== "boolean") {
+      this.options.enableDotNotation = true;
+    }
 
     this.state = this.engine.init();
     this.pointers = [];
@@ -100,7 +105,7 @@ class StormDB {
 
   get(value) {
     let extraPointers;
-    if (typeof value === "string") extraPointers = value.split(".");
+    if (typeof value === "string" && this.options.enableDotNotation) extraPointers = value.split(".");
     else extraPointers = [value];
 
     let clone = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
@@ -113,7 +118,7 @@ class StormDB {
       this.setValue(key);
     } else {
       let extraPointers;
-      if (typeof key === "string") extraPointers = key.split(".");
+      if (typeof key === "string" && this.options.enableDotNotation) extraPointers = key.split(".");
       else extraPointers = [key];
 
       this.setValue(value, extraPointers);
