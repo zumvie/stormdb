@@ -3,7 +3,7 @@ class StormDB {
     this.engine = engine;
     this.options = options || {};
 
-    if (typeof this.options.ignoreDots !== "boolean") {
+    if (typeof this.options.enableDotNotation !== "boolean") {
       this.options.enableDotNotation = true;
     }
 
