@@ -34,8 +34,6 @@ db.get("users")
 - 📦 [Tiny Size](https://bundlephobia.com/result?p=stormdb) - Tiny source code size allows for blazingly fast loading when speed matters.
 - ⚡️ Versatile - Can be used with NodeJS, in the browser or in Electron.
 
-## Options
-
 ## Usage
 
 Install StormDB through NPM:
